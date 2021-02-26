@@ -1,0 +1,25 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">S.N</th>
+        <th scope="col">Stock Name</th>
+        <th scope="col">Transaction Type</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Transaction Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sd of service.list,let i = index">
+        <td (click)="populateForm(sd)">{{i+1}}</td>
+        <td (click)="populateForm(sd)">{{sd.stockName}}</td>
+        <td (click)="populateForm(sd)">{{sd.transactionType}}</td>
+        <td (click)="populateForm(sd)">{{sd.quantity}}</td>
+        <td (click)="populateForm(sd)">{{sd.amount}}</td>
+        <td (click)="populateForm(sd)">{{sd.transactionDate}}</td>
+        <td>
+            <em class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(sd.stockId)"></em>
+        </td>
+      </tr>
+    </tbody>
+  </table>

@@ -1,0 +1,37 @@
+<form noValidate autocomplete="off" #form="ngForm" (submit)="onSubmit()">
+    <div class="form row">
+        <div class="form-group col-md-6">
+        <label >Stock Name</label><br>
+        <select name="stockName" id="stockName" #stockName="ngModel" [(ngModel)]="service.formData.stockName" FormControl="stockName">
+            <option value="" selected disabled>Please select A Stock</option>
+            <option value="CGH">CGH</option>
+            <option value="NHPC">NHPC</option>
+            <option value="MERO">MERO</option>
+            <option value="NIRFA">NIRFA</option>
+          </select>
+    </div>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-info" type="submit" [disabled]="form.invalid">SUBMIT</button>
+    </div>
+</form>
+<table >
+    <thead>
+        <th>{{stockName.value}}</th>
+    </thead>
+    <tr>
+      <td class="col">Total Units:{{totalUnits}}</td>
+    </tr>
+    <tr>
+        <td class="col">Sold Amount:{{buySum}}</td>
+    </tr>
+    <tr>
+        <td class="col">Total Investment:{{saleSum}}</td>
+    </tr>
+    <tr>
+          <td class="col">Current Amount:{{currentAmount}}</td>
+    </tr>
+    <tr>
+          <td class="col">Overall profit/Loss:{{saleSum-buySum}}</td>
+    </tr>
+</table>
