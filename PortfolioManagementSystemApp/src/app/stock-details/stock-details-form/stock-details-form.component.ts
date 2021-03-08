@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { StockDetails } from 'src/app/Shared/stock-details.model';
 import { StockDetailsService } from 'src/app/Shared/stock-details.service';
+import { StocksService } from 'src/app/Shared/stocks.service';
 
 @Component({
   selector: 'app-stock-details-form',
@@ -12,13 +13,14 @@ import { StockDetailsService } from 'src/app/Shared/stock-details.service';
 })
 export class StockDetailsFormComponent implements OnInit {
 
-  constructor(public service:StockDetailsService,private toastr:ToastrService,private datePipe:DatePipe,private router:Router) { }
+  constructor(public service:StockDetailsService,private toastr:ToastrService,private datePipe:DatePipe,private router:Router,public stockServices:StocksService) { }
 
   ngOnInit(): void {
+    this.stockServices.getStocks();
   }
 
   onSubmit(form:NgForm){
-    if(this.service.formData.stockId==0){
+    if(this.service.formData.transactionId==0){
       this.insertRecord(form);
       this.router.navigate(['']);
     }

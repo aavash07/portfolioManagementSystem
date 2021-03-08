@@ -1,14 +1,11 @@
 <form noValidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
-    <input type="hidden" name="stockId" [value]="service.formData.stockId"/>
+    <input type="hidden" name="transactionId" [value]="service.formData.transactionId"/>
     <div class="form-row">
         <div class="form-group col-md-6">
             <label >Stock Name</label><br>
-            <select name="stockName" id="stockName" #stockName="ngModel" [(ngModel)]="service.formData.stockName">
+            <select name="stockId" id="stockId" #stockId="ngModel" [(ngModel)]="service.formData.stockId">
                 <option value="" selected disabled>Please select A Stock</option>
-                <option value="CGH">CGH</option>
-                <option value="NHPC">NHPC</option>
-                <option value="MERO">MERO</option>
-                <option value="NIRFA">NIRFA</option>
+                <option  *ngFor="let s of stockServices.list" [value]="s.stockId">{{s.stockName}}</option>
               </select>
         </div>
         <div class="form-group col-md-6">

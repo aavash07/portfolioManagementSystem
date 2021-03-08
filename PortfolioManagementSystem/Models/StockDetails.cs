@@ -10,10 +10,7 @@ namespace PortfolioManagementSystem.Models
     public class StockDetails
     {
         [Key]
-        public int StockId { get; set; }
-
-        [Column(TypeName ="nvarchar(300)")]
-        public string StockName { get; set; }
+        public int TransactionId { get; set; }
 
         [Column(TypeName = "nvarchar(5)")]
         public string TransactionType { get; set; }
@@ -24,7 +21,11 @@ namespace PortfolioManagementSystem.Models
         [Column(TypeName = "nvarchar(20)")]
         public double Amount { get; set; }
 
-        [Column(TypeName ="nvarchar(50)")]
-        public string TransactionDate { get; set; }
+        [Column(TypeName ="date")]
+        public DateTime TransactionDate { get; set; }
+
+        [ForeignKey("Stocks")]
+        public int StockId { get; set; }
+        //public Stocks Stocks{ get; set; }
     }
 }

@@ -14,5 +14,9 @@ namespace PortfolioManagementSystem.Models
         }
 
         public DbSet<StockDetails> StockDetails { get; set; }
+
+        public DbSet<Stocks> Stocks { get; set; }
+
+
     }
 }

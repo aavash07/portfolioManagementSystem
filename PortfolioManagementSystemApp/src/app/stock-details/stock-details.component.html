@@ -1,5 +1,5 @@
 <table class="table">
-    <thead>
+    <thead >
       <tr>
         <th scope="col">S.N</th>
         <th scope="col">Stock Name</th>
@@ -10,16 +10,20 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let sd of service.list,let i = index">
-        <td (click)="populateForm(sd)">{{i+1}}</td>
-        <td (click)="populateForm(sd)">{{sd.stockName}}</td>
-        <td (click)="populateForm(sd)">{{sd.transactionType}}</td>
-        <td (click)="populateForm(sd)">{{sd.quantity}}</td>
-        <td (click)="populateForm(sd)">{{sd.amount}}</td>
-        <td (click)="populateForm(sd)">{{sd.transactionDate}}</td>
-        <td>
-            <em class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(sd.stockId)"></em>
-        </td>
+
+      <tr *ngFor="let sd of service.list,let i = index" >
+          <td >{{i+1}}</td>
+          <td >{{sd.stockName}}</td>
+          <td >{{sd.transactionType}}</td>
+          <td >{{sd.quantity}}</td>
+          <td >{{sd.amount}}</td>
+          <td >{{sd.transactionDate}}</td>
+          <td>
+              <em *ngIf="sd.transactionId== service.list[service.list.length-1].transactionId" class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(sd.transactionId)"></em>
+          </td>
+          <td>
+            <em *ngIf="sd.transactionId== service.list[service.list.length-1].transactionId" class="far fa-edit fa-lg text-danger" (click)="populateForm(sd.transactionId)" ></em>
+          </td>  
       </tr>
     </tbody>
   </table>

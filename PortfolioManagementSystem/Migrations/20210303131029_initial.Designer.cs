@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PortfolioManagementSystem.Models;
 
 namespace PortfolioManagementSystem.Migrations
 {
     [DbContext(typeof(StockDbContext))]
-    partial class StockDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210303131029_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,7 +47,8 @@ namespace PortfolioManagementSystem.Migrations
 
                     b.HasKey("TransactionId");
 
-                    b.HasIndex("StockId");
+                    b.HasIndex("StockId")
+                        .IsUnique();
 
                     b.ToTable("StockDetails");
                 });
@@ -69,12 +72,17 @@ namespace PortfolioManagementSystem.Migrations
             modelBuilder.Entity("PortfolioManagementSystem.Models.StockDetails", b =>
                 {
                     b.HasOne("PortfolioManagementSystem.Models.Stocks", "Stocks")
-                        .WithMany()
-                        .HasForeignKey("StockId")
+                        .WithOne("StockDetails")
+                        .HasForeignKey("PortfolioManagementSystem.Models.StockDetails", "StockId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Stocks");
+                });
+
+            modelBuilder.Entity("PortfolioManagementSystem.Models.Stocks", b =>
+                {
+                    b.Navigation("StockDetails");
                 });
 #pragma warning restore 612, 618
         }

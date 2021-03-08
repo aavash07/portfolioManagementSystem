@@ -10,8 +10,8 @@ using PortfolioManagementSystem.Models;
 namespace PortfolioManagementSystem.Migrations
 {
     [DbContext(typeof(StockDbContext))]
-    [Migration("20210226053832_Initial create")]
-    partial class Initialcreate
+    [Migration("20210303133949_third")]
+    partial class third
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,7 +23,7 @@ namespace PortfolioManagementSystem.Migrations
 
             modelBuilder.Entity("PortfolioManagementSystem.Models.StockDetails", b =>
                 {
-                    b.Property<int>("StockId")
+                    b.Property<int>("TransactionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -36,18 +36,34 @@ namespace PortfolioManagementSystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(5)");
 
-                    b.Property<string>("StockName")
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<int>("StockId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("TransactionDate")
-                        .HasColumnType("Date");
+                        .HasColumnType("date");
 
                     b.Property<string>("TransactionType")
                         .HasColumnType("nvarchar(5)");
 
-                    b.HasKey("StockId");
+                    b.HasKey("TransactionId");
 
                     b.ToTable("StockDetails");
+                });
+
+            modelBuilder.Entity("PortfolioManagementSystem.Models.Stocks", b =>
+                {
+                    b.Property<int>("StockId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("StockName")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("varchar(100)");
+
+                    b.HasKey("StockId");
+
+                    b.ToTable("Stocks");
                 });
 #pragma warning restore 612, 618
         }
